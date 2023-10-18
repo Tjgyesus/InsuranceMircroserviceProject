@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.Date;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -18,7 +19,7 @@ public class UserEntity {
     private int Id;
     private String username;
     private String password;
-//    private Roles roles;
+    private String roles;
 
 
 }
