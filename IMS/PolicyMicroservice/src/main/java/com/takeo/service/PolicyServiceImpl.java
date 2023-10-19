@@ -1,0 +1,40 @@
+package com.takeo.service;
+
+import com.takeo.dto.PolicyDto;
+import com.takeo.entity.PolicyEntity;
+import com.takeo.repo.PolicyRepo;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.Optional;
+
+@Service
+public class PolicyServiceImpl implements PolicyService{
+    @Autowired
+    private PolicyRepo policyRepo;
+    
+    @Override
+    public PolicyEntity createPolicy(PolicyDto policyDto) {
+        PolicyEntity policyEntity = PolicyEntity.builder()
+                .policyNumber(policyDto.getPolicyNumber())
+                .policyHolderName(policyDto.getPolicyHolderName())
+                .effectiveDate(policyDto.getEffectiveDate())
+                .build();
+        policyRepo.save(policyEntity);
+        return policyEntity;
+    }
+
+    @Override
+    public List<PolicyEntity> viewAll() {
+        List <PolicyEntity> policyEntity = policyRepo.findAll();
+        return policyEntity;
+    }
+
+    @Override
+    public List <PolicyEntity> findByPolicyNumber(String policyNumber) {
+        List<PolicyEntity> policyEntity = policyRepo.findByPolicyNumber(policyNumber);
+        return policyEntity;
+    }
+
+}

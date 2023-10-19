@@ -1,0 +1,21 @@
+spring:
+  application:
+    name: api-gateway
+
+  cloud:
+    gateway:
+      routes:
+        - id: policy-service
+          uri: lb://policy-service
+          predicates:
+            - Path=/policy/**
+        - id: claim-service
+          uri: lb://claim-service
+          predicates:
+            - Path=/claim/**
+
+  config:
+    import: "optional:configserver:http://localhost:8888"
+
+
+

@@ -1,6 +1,5 @@
-package com.takeo.entity;
+package com.takeo.dto;
 
-import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -11,17 +10,9 @@ import java.util.Date;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity
 @Builder
-@Table(name = "policy_client")
-public class PolicyEntity {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+public class PolicyDto {
     private String policyNumber;
     private String policyHolderName;
     private Date effectiveDate;
-//    private Date endDate;
-
-
 }
