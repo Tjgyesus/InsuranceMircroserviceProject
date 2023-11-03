@@ -22,7 +22,7 @@ public class AdminProfileController {
     @Autowired
     DefaultUserService userService;
 
-        @GetMapping("/getAll")
+        @GetMapping("/view_all")
         public ResponseEntity<List<User>> getAllClaim() {
             List<User> claim = daoService.getAllUsers();
             LOGGER.info("getALL API is called.");

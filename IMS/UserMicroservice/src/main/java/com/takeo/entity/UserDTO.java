@@ -19,7 +19,7 @@ public class UserDTO {
     @Email(message="Enter valid email")
     private String email;
     @NotNull(message = "Please Enter role")
-    private String role;
+    private Role role;
 }
 
 

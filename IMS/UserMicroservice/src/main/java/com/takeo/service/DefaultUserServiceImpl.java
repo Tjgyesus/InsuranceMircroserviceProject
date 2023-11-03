@@ -55,7 +55,7 @@ public class DefaultUserServiceImpl implements DefaultUserService{
 		user.setEmail(userRegisteredDTO.getEmail());
 		user.setUserName(userRegisteredDTO.getUserName());
 		user.setPassword(passwordEncoder.encode(userRegisteredDTO.getPassword()));
-		user.setRole(role);
+		user.setRole(userRegisteredDTO.getRole());
 
 		return userRepo.save(user);
 	}

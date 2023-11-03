@@ -13,32 +13,33 @@ import java.util.Set;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name= "User")
+@Table(name= "User_client")
 public class User {
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private int id;
 	private String userName;
 	private String password;
 	private String email;
 
+	@Transient
 	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "users_role", joinColumns = @JoinColumn(name = "cust_id", referencedColumnName = "id"),
 			inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id") )
-	Set<Role> roles = new HashSet<Role>();
+	Set<Role> role = new HashSet<Role>();
 
 
 	public Set<Role> getRole() {
 
-		return roles;
+		return role;
 	}
 
 	public void setRole(Role role) {
 
-		this.roles.add(role);
+		this.role.add(role);
 	}
 	public void setRoles(Set<Role> roles) {
-		this.roles = roles;
+		this.role = roles;
 	}
 
 }
