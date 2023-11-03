@@ -37,4 +37,27 @@ public class PolicyServiceImpl implements PolicyService{
         return policyEntity;
     }
 
+    @Override
+    public Optional<PolicyEntity> getPolicyById(int id) {
+        Optional<PolicyEntity> policyEntity = policyRepo.findById(id);
+        return policyEntity;
+    }
+
+    @Override
+    public PolicyEntity updatePolicy(PolicyEntity policy) {
+        PolicyEntity existingPolicy =policyRepo.findById(policy.getId()).get();
+        existingPolicy.setPolicyNumber(policy.getPolicyNumber());
+        existingPolicy.setPolicyHolderName(policy.getPolicyHolderName());
+        existingPolicy.setEffectiveDate(policy.getEffectiveDate());
+
+        PolicyEntity updatedPolicy = policyRepo.save(existingPolicy);
+        return updatedPolicy;
+    }
+
+    @Override
+    public void deletePolicy(int id) {
+        policyRepo.deleteById(id);
+
+    }
+
 }

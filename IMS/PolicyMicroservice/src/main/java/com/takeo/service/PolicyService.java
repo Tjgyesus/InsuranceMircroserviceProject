@@ -10,6 +10,11 @@ public interface PolicyService {
     PolicyEntity createPolicy(PolicyDto policyDto);
     List <PolicyEntity> viewAll();
     List <PolicyEntity> findByPolicyNumber(String policyNumber);
+    Optional<PolicyEntity> getPolicyById(int id);
+
+    PolicyEntity updatePolicy(PolicyEntity  policy);
+
+    void deletePolicy(int id);
 
 
 }

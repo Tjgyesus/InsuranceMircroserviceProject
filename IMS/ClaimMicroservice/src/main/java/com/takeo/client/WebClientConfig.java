@@ -13,7 +13,7 @@ import org.springframework.web.service.invoker.HttpServiceProxyFactory;
         @Autowired
         private LoadBalancedExchangeFilterFunction filterFunction;
         @Bean
-        public WebClient policyWebClinet(){
+        public WebClient policyWebClient(){
             return WebClient.builder()
                     .baseUrl("http://policy-service")
                     .filter(filterFunction)
@@ -23,7 +23,7 @@ import org.springframework.web.service.invoker.HttpServiceProxyFactory;
         public PolicyClient policyClient(){
             HttpServiceProxyFactory httpServiceProxyFactory
                     = HttpServiceProxyFactory
-                    .builder(WebClientAdapter.forClient(policyWebClinet()))
+                    .builder(WebClientAdapter.forClient(policyWebClient()))
                     .build();
             return httpServiceProxyFactory.createClient(PolicyClient.class);
 

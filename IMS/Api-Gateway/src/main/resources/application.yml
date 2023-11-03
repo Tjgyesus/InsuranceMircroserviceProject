@@ -5,6 +5,10 @@ spring:
   cloud:
     gateway:
       routes:
+        - id: user-service
+          uri: lb://user-service
+          predicates:
+              - Path=/user/**
         - id: policy-service
           uri: lb://policy-service
           predicates:
@@ -13,6 +17,7 @@ spring:
           uri: lb://claim-service
           predicates:
             - Path=/claim/**
+
 
   config:
     import: "optional:configserver:http://localhost:8888"

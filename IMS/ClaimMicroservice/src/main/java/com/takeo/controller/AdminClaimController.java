@@ -1,5 +1,6 @@
 package com.takeo.controller;
 
+
 import com.takeo.dto.ClaimDto;
 import com.takeo.entity.Claim;
 import com.takeo.entity.Policy;
@@ -11,17 +12,15 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Random;
+
 
 @RestController
-@RequestMapping("/claim")
-public class ClaimController {
+@RequestMapping("/claim/admin/api/claim")
+public class AdminClaimController {
     @Autowired
     private ClaimServiceImpl claimService;
 
-    @PostMapping("/create_claim")
-    public ResponseEntity<Claim> registerClaim(@RequestBody ClaimDto claimDto){
-        return new ResponseEntity<>(claimService.createClaim(claimDto), HttpStatus.CREATED);
-    }
     @GetMapping("/view_all")
     public ResponseEntity<List<Claim>> showAllClaims(){
         return ResponseEntity.ok(claimService.viewAllClaims());
@@ -38,7 +37,20 @@ public class ClaimController {
     public ResponseEntity<List<Claim>> getUserPolicy(@PathVariable("policy_number") Policy policyNumber ){
         return ResponseEntity.ok(claimService.getUserPolicy(policyNumber));
     }
+    @PutMapping("/update/{id}")
+    public ResponseEntity<Claim> updateClaim(@PathVariable("id") int id,
+                                             @RequestBody Claim claim){
+        claim.setId(id);
+        Claim updateClaim =claimService.updateClaim(claim);
+        return new ResponseEntity<>(updateClaim, HttpStatus.OK);
+    }
+
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<String> deleteClaim(@PathVariable("id") int claimId){
+        claimService.deleteClaim(claimId);
+        return new ResponseEntity<>("User successfully deleted!", HttpStatus.OK);
+    }
+
+    }
 
 
-
-}

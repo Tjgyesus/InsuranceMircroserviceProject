@@ -12,6 +12,9 @@ public interface ClaimService {
     List <Claim> viewAllClaims();
     Optional <Claim> getClaimById(int id);
     Claim findClaimByClaimNumber(String claimNumber);
+    void deleteClaim(int id);
+    Claim updateClaim(Claim claim);
+
     List <Claim> getUserPolicy(Policy policyNumber);
 
 

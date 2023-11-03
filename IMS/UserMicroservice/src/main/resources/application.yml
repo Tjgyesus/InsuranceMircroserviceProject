@@ -22,3 +22,5 @@ spring:
           dialect:
             PostgreSQLDialect: org.hibernate.dialect.PostgreSQLDialect
 
+
+

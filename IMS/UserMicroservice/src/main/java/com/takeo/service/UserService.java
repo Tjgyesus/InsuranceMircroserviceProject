@@ -1,8 +1,18 @@
 package com.takeo.service;
+import com.takeo.entity.User;
 
-import com.takeo.entity.UserEntity;
+import java.util.List;
 
 public interface UserService {
-    UserEntity createUser(UserEntity userEntity);
+    User readUser();
+
+    User updateUser(User user);
+
+    void deleteUser();
+
+    User getLoggedInUser();
+    List<User> getAllUsers();
+    public boolean emailExists(String email);
+
 
 }

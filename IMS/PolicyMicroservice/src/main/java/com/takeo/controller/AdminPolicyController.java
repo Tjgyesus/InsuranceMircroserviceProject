@@ -9,11 +9,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
-@RequestMapping("/policy")
-public class PolicyController {
+@RequestMapping("/policy/admin/api/policy")
+public class AdminPolicyController {
     @Autowired
     private PolicyServiceImpl policyService;
 
@@ -28,6 +27,19 @@ public class PolicyController {
     @GetMapping("/view/{policy_number}")
     public ResponseEntity<List<PolicyEntity>> getByPolicyNumber(@PathVariable("policy_number") String policyNumber){
         return ResponseEntity.ok(policyService.findByPolicyNumber(policyNumber));
+    }
+    @PutMapping("/update/{id}")
+    public ResponseEntity<PolicyEntity> updatePolicy(@PathVariable("id") int id,
+                                               @RequestBody PolicyEntity policy){
+        policy.setId(id);
+        PolicyEntity updatePolicy =policyService.updatePolicy(policy);
+        return new ResponseEntity<>(updatePolicy, HttpStatus.OK);
+    }
+
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<String> deletePolicy(@PathVariable("id") int id){
+        policyService.deletePolicy(id);
+        return new ResponseEntity<>("User successfully deleted!", HttpStatus.OK);
     }
 
 
