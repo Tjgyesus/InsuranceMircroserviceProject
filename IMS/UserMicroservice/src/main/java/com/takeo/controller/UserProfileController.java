@@ -55,7 +55,7 @@ public class UserProfileController {
 	}
 
 
-	@GetMapping("/genToken")
+	@PostMapping("/genToken")
 	public String generateJwtToken(@RequestBody UserDTO userDto) throws Exception {
 		
 			Authentication authentication = authManager.authenticate(

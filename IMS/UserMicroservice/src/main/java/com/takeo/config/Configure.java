@@ -47,7 +47,10 @@ public class Configure {
         public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
             http
                     .csrf((csrf) -> csrf.disable())
-                    .authorizeRequests().anyRequest().permitAll();
+                    .authorizeHttpRequests((authz) -> authz
+                            .requestMatchers("/swagger-ui/**", "/user/admin/api/**","/user/user/api/**" )
+                            .permitAll());
+
             return http.build();
         }
 
